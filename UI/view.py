@@ -32,8 +32,10 @@ class View:
         # TODO
 
         # Riga 1
-        self.dd_anno = ft.Dropdown(label="Anno", width=200, alignment=ft.alignment.top_left)
 
+        self.dd_anno = ft.Dropdown(label="Anno", width=200, alignment=ft.alignment.top_left,on_change=self.controller.handle_anno)
+        self.dd_anno.options = [ft.dropdown.Option(str(y)) for y in self.controller.get_years()]
+        self.page.update()
         row1 = ft.Row([ft.Container(self.txt_titolo, width=500),
                                ft.Container(None, width=0),
                                ft.Container(self.dd_anno, width=250)],
@@ -68,6 +70,7 @@ class View:
         # --- Layout della pagina ---
         self.page.add(
             self.toggle_cambia_tema,
+
 
             row1,
             ft.Divider(),
